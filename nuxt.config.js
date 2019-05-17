@@ -39,7 +39,7 @@ module.exports = {
   plugins: [
     {
       src: '@/plugins/webrtc-client',
-      ssr: true
+      ssr: false
     }
   ],
 

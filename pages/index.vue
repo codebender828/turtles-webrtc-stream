@@ -1,37 +1,65 @@
 <template>
   <section class="container">
-    <div>
-      <h1 class="title">
-        turtles-webrtc-stream
-      </h1>
-      <h2 class="subtitle">
-        WebRTC video streaming implementation in nuxt
-      </h2>
-    </div>
+    <video id="videoElement" ref="video" autoplay="true" />
   </section>
 </template>
 
 <script lang="js">
-import socket from '~/plugins/socket.io.js'
-
 export default {
-  computed: {
-    $socket() {
-      return socket
+  data() {
+    return {
+      stream: undefined
     }
   },
   mounted() {
-    socket.emit('broadcaster')
+    const video = this.$refs.video
+    // const canvas = document.querySelector('canvas')
+    // const ctx = canvas.getContext('2d')
+
+    /** @type {MediaStreamConstraints} */
+    const constraints = {
+      video: { facingMode: 'user' }
+    }
+
+    // Combine RTCPeerConnection with getUserMedia
+    navigator.mediaDevices.getUserMedia(constraints)
+      .then((stream) => {
+        video.srcObject = stream
+
+        // peerConnection.addStream(stream)
+        // peerConnection.createOffer()
+        //   .then(sdp => peerConnection.setLocalDescription(sdp))
+        //   .then(() => {
+        //     socket.emit('offer', peerConnection.localDescription)
+        //   })
+        //   .catch(err => console.warn('[peerConnection]: Could not create offer', err))
+      })
+      .catch(err => console.error(err))
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
   @apply min-h-screen flex justify-center items-center text-center mx-auto;
 }
 */
+
+html { overflow: hidden; height: 100%;}
+video { width: 100%; height: 100%; position: absolute; display: block; top: 0; left: 0; object-fit: cover;}
+body {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: black;
+  margin: 0;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
