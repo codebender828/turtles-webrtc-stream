@@ -43,23 +43,19 @@ export default {
     })
 
     socket.on('candidate', (id, candidate) => {
-      console.log('[View] candidate event')
       peerConnection.addIceCandidate(new RTCIceCandidate(candidate))
         .catch(e => console.error('[addIceCandidate]:', e))
     })
 
     socket.on('connect', () => {
-      console.log('[View] connect event')
       socket.emit('watcher')
     })
 
     socket.on('broadcaster', () => {
-      console.log('[View] broadcaster event')
       socket.emit('watcher')
     })
 
     socket.on('bye', () => {
-      console.log('[View] bye event')
       peerConnection.close()
     })
   }
