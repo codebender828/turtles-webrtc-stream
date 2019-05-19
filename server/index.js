@@ -18,6 +18,8 @@ app.use(cors())
 const NODE_ENV = process.env.NODE_ENV || 'development'
 config.dev = !(NODE_ENV === 'production')
 
+console.log('[NODE_ENV]', NODE_ENV)
+
 switch (NODE_ENV) {
   case 'production':
     console.log = () => { }
