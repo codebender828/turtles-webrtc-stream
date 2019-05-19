@@ -12,15 +12,12 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('broadcaster')
   })
   socket.on('watcher', () => {
-    console.log('[S: WS]: watcher event')
     broadcaster && socket.to(broadcaster).emit('watcher', socket.id)
   })
   socket.on('offer', (id /* of the watcher */, message) => {
-    console.log('[S: WS]: Offer event', { id, message })
     socket.to(id).emit('offer', socket.id /* of the broadcaster */, message)
   })
   socket.on('answer', (id /* of the broadcaster */, message) => {
-    console.log('[S: WS]: Answer event', { message })
     socket.to(id).emit('answer', socket.id /* of the watcher */, message)
   })
   socket.on('candidate', (id, message) => {

@@ -13,12 +13,12 @@ export default {
       stream: undefined
     }
   },
-  mounted() {
+  async mounted() {
     const peerConnections = {}
 
     /** @type {MediaStreamConstraints} */
     const constraints = {
-      audio: true,
+      // audio: true,
       video: { facingMode: 'user' }
     }
 
@@ -32,7 +32,7 @@ export default {
     const video = this.$refs.video
 
     // Combine RTCPeerConnection with getUserMedia
-    navigator.mediaDevices.getUserMedia(constraints)
+    await navigator.mediaDevices.getUserMedia(constraints)
       .then((stream) => {
         video.srcObject = stream
         socket.emit('broadcaster')

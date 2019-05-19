@@ -2,10 +2,16 @@ const pkg = require('./package')
 
 module.exports = {
   env: {
-    BASE_URL: process.env.BASE_URL || 'http://localhost:3000'
+    BASE_URL: 'http://localhost:3000'
   },
   mode: 'universal',
-
+  generate: {
+    routes: [
+      '/',
+      '/broadcast',
+      '/view'
+    ]
+  },
   /*
   ** Headers of the page
   */
@@ -46,9 +52,9 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: [
-    '@nuxtjs/pwa'
-  ],
+  // modules: [
+  //   '@nuxtjs/pwa'
+  // ],
 
   /*
   ** Build configuration

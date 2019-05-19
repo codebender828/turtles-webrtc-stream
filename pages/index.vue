@@ -1,6 +1,14 @@
 <template>
   <section class="container">
-    <video autoplay="true" />
+    <h1>Simple WebRTC video streaming</h1>
+    <div class="links">
+      <nuxt-link to="/broadcast">
+        Broadcast
+      </nuxt-link>
+      <nuxt-link to="/view">
+        View
+      </nuxt-link>
+    </div>
   </section>
 </template>
 
@@ -17,8 +25,6 @@ export default {
 }
 */
 
-html { overflow: hidden; height: 100%;}
-video { width: 100%; height: 100%; position: absolute; display: block; top: 0; left: 0; object-fit: cover;}
 body {
   height: 100%;
   width: 100%;
@@ -27,7 +33,7 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: black;
+  background-color: white;
   margin: 0;
 }
 
@@ -35,9 +41,18 @@ body {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
   text-align: center;
+
+  .links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .title {
