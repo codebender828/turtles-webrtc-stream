@@ -25,7 +25,10 @@ export default {
     /** @type {RTCConfiguration} */
     const config = { // eslint-disable-line no-unused-vars
       'iceServers': [{
-        'urls': ['stun:stun.l.google.com:19302']
+        'urls': [
+          'stun:stun1.l.google.com:19302',
+          'stun:stun.stunprotocol.org:3478'
+        ]
       }]
     }
 
