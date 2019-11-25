@@ -2,7 +2,9 @@ const pkg = require('./package')
 
 module.exports = {
   env: {
-    BASE_URL: 'https://astroft.com'
+    // BASE_URL: 'https://astroft.com'
+    BASE_URL: '192.168.43.250'
+    // BASE_URL: 'http://localhost:3000'
   },
   mode: 'universal',
   generate: {
